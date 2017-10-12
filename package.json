@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/crupper/multi-phaser-game#readme",
   "dependencies": {
+    "express": "^4.16.2",
     "socket.io": "^2.0.3"
   }
 }
