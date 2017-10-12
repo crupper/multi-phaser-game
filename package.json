@@ -1,0 +1,22 @@
+{
+  "name": "multi-phaser-game",
+  "version": "1.0.0",
+  "description": "This repo is my attempts to learn phaser",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crupper/multi-phaser-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crupper/multi-phaser-game/issues"
+  },
+  "homepage": "https://github.com/crupper/multi-phaser-game#readme",
+  "dependencies": {
+    "socket.io": "^2.0.3"
+  }
+}
