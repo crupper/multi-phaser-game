@@ -1,26 +1,20 @@
 
-var socket; // define a global variable called socket
+var socket; // define a global variable called socket 
 socket = io.connect(); // send a connection request to the server
 
 //this is just configuring a screen size to fit the game properly
 //to the browser
-canvas_width = window.innerWidth * window.devicePixelRatio;
+canvas_width = window.innerWidth * window.devicePixelRatio; 
 canvas_height = window.innerHeight * window.devicePixelRatio;
 
 //make a phaser game
 var game = new Phaser.Game(canvas_width,canvas_height, Phaser.AUTO, 'gameDiv', { preload: preload, createNetworkPackets: createNetworkPackets, update: update, render: render });
 
-var gameProperties = {
-	//this is the actual game size to determine the boundary of
+var gameProperties = { 
+	//this is the actual game size to determine the boundary of 
 	//the world
-	gameWidth: 4000,
+	gameWidth: 4000, 
 	gameHeight: 4000,
-  this.bmd = null;
-  this.points = {
-      'x': [ 32, 128, 256, 384, 512, 608 ],
-      'y': [ 240, 240, 240, 240, 240, 240 ]
-  };
-
 };
 
 
@@ -51,7 +45,7 @@ function render() {
 // this is the main game state
 var main = function(game){
 };
-// add the
+// add the 
 main.prototype = {
 	preload: function() {
 		preload()
@@ -60,54 +54,30 @@ main.prototype = {
 	//this function is fired once when we load the game
 	create: function () {
 		console.log("client started");
-		//listen to the “connect” message from the server. The server
-		//automatically emit a “connect” message when the cleint connets.When
-		//the client connects, call onsocketConnected.
-		socket.on("connect", onsocketConnected);
+		//listen to the “connect” message from the server. The server 
+		//automatically emit a “connect” message when the cleint connets.When 
+		//the client connects, call onsocketConnected.  
+		socket.on("connect", onsocketConnected); 
 		//createNetworkPackets()
 		//while(true) {update()}
-		//emitParticles();
-    this.tylerFirePacket();
+		emitParticles()
 	}
-
-  tylerFirePacket: function () {
-    var x = 1 / game.width;
-
-    for (var i = 0; i <= 1; i += x)
-    {
-      var px = this.math.linearInterpolation(this.points.x, i);
-      var py = this.math.linearInterpolation(this.points.y, i);
-
-      // var px = this.math.bezierInterpolation(this.points.x, i);
-      // var py = this.math.bezierInterpolation(this.points.y, i);
-
-      // var px = this.math.catmullRomInterpolation(this.points.x, i);
-      // var py = this.math.catmullRomInterpolation(this.points.y, i);
-
-      this.bmd.rect(px, py, 1, 1, 'rgba(255, 255, 255, 1)');
-    }
-
-    for (var p = 0; p < this.points.x.length; p++)
-    {
-      this.bmd.rect(this.points.x[p]-3, this.points.y[p]-3, 6, 6, 'rgba(255, 0, 0, 1)');
-    }
-  }
 }
 
 // this function is fired when we connect
 function onsocketConnected () {
-	console.log("connected to server");
+	console.log("connected to server"); 
 }
 
 // wrap the game states.
 var gameBootstrapper = {
     init: function(gameContainerElementId){
 		game.state.add('main', main);
-		game.state.start('main');
+		game.state.start('main'); 
     }
 };;
 
-//call the init function in the wrapper and specifiy the division id
+//call the init function in the wrapper and specifiy the division id 
 gameBootstrapper.init("gameDiv");
 
 
@@ -151,7 +121,7 @@ function firePacket () {
 
 	if (game.time.now > bulletTime) {
 		bullet = bullets.getFirstExists(false);
-		console.log("fired a packet")
+		console.log("fired a packet") 
 		if (bullet)
 		{
 				//  And fire it
@@ -167,30 +137,6 @@ function resetBullet (bullet) {
 
 //  Called if the bullet goes out of the screen
 	bullet.kill();
-
-}
-
-function tylerFirePacket() {
-    var x = 1 / game.width;
-
-    for (var i = 0; i <= 1; i += x)
-    {
-        var px = this.math.linearInterpolation(this.points.x, i);
-        var py = this.math.linearInterpolation(this.points.y, i);
-
-        // var px = this.math.bezierInterpolation(this.points.x, i);
-        // var py = this.math.bezierInterpolation(this.points.y, i);
-
-        // var px = this.math.catmullRomInterpolation(this.points.x, i);
-        // var py = this.math.catmullRomInterpolation(this.points.y, i);
-
-        this.bmd.rect(px, py, 1, 1, 'rgba(255, 255, 255, 1)');
-    }
-
-    for (var p = 0; p < this.points.x.length; p++)
-    {
-        this.bmd.rect(this.points.x[p]-3, this.points.y[p]-3, 6, 6, 'rgba(255, 0, 0, 1)');
-    }
 
 }
 
