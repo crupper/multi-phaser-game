@@ -6,6 +6,8 @@ socket = io.connect(); // send a connection request to the server
 //to the browser
 canvas_width = window.innerWidth * window.devicePixelRatio; 
 canvas_height = window.innerHeight * window.devicePixelRatio;
+ymid = canvas_height/2;
+xmid = canvas_width/2;
 
 //make a phaser game
 var game = new Phaser.Game(canvas_width,canvas_height, Phaser.AUTO, 'gameDiv', { preload: preload, createNetworkPackets: createNetworkPackets, update: update, render: render });
@@ -13,8 +15,8 @@ var game = new Phaser.Game(canvas_width,canvas_height, Phaser.AUTO, 'gameDiv', {
 var gameProperties = { 
 	//this is the actual game size to determine the boundary of 
 	//the world
-	gameWidth: 4000, 
-	gameHeight: 4000,
+	gameWidth: 1000, 
+	gameHeight: 1000,
 };
 
 
@@ -24,14 +26,17 @@ var players
 var bullets // this is for testing purposes
 var fireButton
 var bulletTime
-
-
+var basePacket
+var cloud
 
 
 
 function preload() {
 	console.log('preload')
 	game.load.image('bullets','bubble.png')
+	game.load.image('basePacket','blue-circle.png')
+	game.load.image('cloud','cloud.png')
+	
   //game.load.image('bullet','lib/Square.png')
 	//game.load.image('bullet','/home/mod/Documents/Square.png')
   //game.load.spritesheet('balls', 'assets/sprites/balls.png', 17, 17);
@@ -60,7 +65,8 @@ main.prototype = {
 		socket.on("connect", onsocketConnected); 
 		//createNetworkPackets()
 		//while(true) {update()}
-		emitParticles()
+		//createCloud();
+		createPackets();
 	}
 }
 
@@ -143,10 +149,50 @@ function resetBullet (bullet) {
 function emitParticles() {
 	var emitter = game.add.emitter(game.world.centerX, game.world.centerY, 250);
 
-	emitter.makeParticles('bullets');
+	emitter.makeParticles('lol');
 
 	emitter.minParticleSpeed.setTo(-400, -400);
 	emitter.maxParticleSpeed.setTo(400, 400);
-	emitter.gravity = 0;
+	emitter.gravity = 200;
 	emitter.start(false, 2000, 15);
+}
+
+
+function createCloud() {
+	
+    	var cloud = game.add.sprite(xmid ,ymid , 'cloud');
+    	game.physics.enable(p1, Phaser.Physics.ARCADE);
+}
+
+function createPackets() {
+
+    //  This creates a simple sprite that is using our loaded image and
+    //  displays it on-screen
+    //  and assign it to a variable
+   // var image = game.add.sprite(xmid ,ymid ,'lol');
+	
+    	var p1 = game.add.sprite(xmid ,ymid , 'basePacket');
+    	game.physics.enable(p1, Phaser.Physics.ARCADE);
+    	p1.body.velocity.x=20;
+			p1.body.velocity.y=20;
+
+
+    	var p2 = game.add.sprite(xmid ,ymid , 'basePacket');
+    	game.physics.enable(p2, Phaser.Physics.ARCADE);
+    	p2.body.velocity.x=20;
+			p2.body.velocity.y=-20;
+
+			
+    	var p3 = game.add.sprite(xmid ,ymid , 'basePacket');
+    	game.physics.enable(p3, Phaser.Physics.ARCADE);
+    	p3.body.velocity.x=-20;
+			p3.body.velocity.y=20;
+
+
+    	var p4 = game.add.sprite(xmid ,ymid , 'basePacket');
+    	game.physics.enable(p4, Phaser.Physics.ARCADE);
+    	p4.body.velocity.x=-20;
+			p4.body.velocity.y=-20;
+			
+			game.time.events.repeat(Phaser.Timer.SECOND * 4, 5, createPackets, this);
 }
