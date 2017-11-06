@@ -77,8 +77,7 @@ class Server extends Infrastructure {
 }
 
 class Workstation extends Infrastructure {
-	constructor(level, cost, name, sprite, serversSupported) {
+	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
-		this.serversSupported = serversSupported;
 	}
 }
