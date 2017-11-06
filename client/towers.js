@@ -15,13 +15,13 @@ class OffensiveTower extends Tower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
-};
+}
 
 class ReconTower extends OffensiveTower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
-};
+}
 
 class AttackTower extends OffensiveTower {
 	constructor(level, cost, name, sprite, shape, color) {
@@ -29,32 +29,32 @@ class AttackTower extends OffensiveTower {
 		this.shape = shape;
 		this.color = color;
 	}
-};
+}
 
 class PersistenceTower extends OffensiveTower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
-};
+}
 
 // DefensiveTower class definition and children: SecOpsTower, IRTower, and ForensicsTower
 class DefensiveTower extends Tower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
-};
+}
 
 class SecOpsTower extends DefensiveTower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
-};
+}
 
 class IRTower extends DefensiveTower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
-};
+}
 
 class ForensicsTower extends DefensiveTower {
 	constructor(level, cost, name, sprite) {
@@ -67,16 +67,18 @@ class Infrastructure extends Tower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
-};
+}
 
 class Server extends Infrastructure {
-	constructor(level, cost, name, sprite) {
+	constructor(level, cost, name, sprite, income) {
 		super(level, cost, name, sprite);
+		this.income = income;
 	}
-};
+}
 
 class Workstation extends Infrastructure {
-	constructor(level, cost, name, sprite) {
+	constructor(level, cost, name, sprite, serversSupported) {
 		super(level, cost, name, sprite);
+		this.serversSupported = serversSupported;
 	}
-};
+}
