@@ -73,10 +73,6 @@ module.exports = class Server extends Infrastructure {
 		super(level, cost, name);
 		this.income = income;
 	}
-
-	generateIncome() {
-		return
-	}
 }
 
 module.exports = class Workstation extends Infrastructure {
