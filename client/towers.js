@@ -17,13 +17,13 @@ class OffensiveTower extends Tower {
 	}
 }
 
-class ReconTower extends OffensiveTower {
+module.exports = class ReconTower extends OffensiveTower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
 }
 
-class AttackTower extends OffensiveTower {
+module.exports = class AttackTower extends OffensiveTower {
 	constructor(level, cost, name, sprite, shape, color) {
 		super(level, cost, name, sprite);
 		this.shape = shape;
@@ -31,7 +31,7 @@ class AttackTower extends OffensiveTower {
 	}
 }
 
-class PersistenceTower extends OffensiveTower {
+module.exports = class PersistenceTower extends OffensiveTower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
@@ -44,19 +44,19 @@ class DefensiveTower extends Tower {
 	}
 }
 
-class SecOpsTower extends DefensiveTower {
+module.exports = class SecOpsTower extends DefensiveTower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
 }
 
-class IRTower extends DefensiveTower {
+module.exports = class IRTower extends DefensiveTower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
 }
 
-class ForensicsTower extends DefensiveTower {
+module.exports = class ForensicsTower extends DefensiveTower {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
@@ -69,14 +69,18 @@ class Infrastructure extends Tower {
 	}
 }
 
-class Server extends Infrastructure {
+module.exports = class Server extends Infrastructure {
 	constructor(level, cost, name, sprite, income) {
 		super(level, cost, name, sprite);
 		this.income = income;
 	}
+
+	generateIncome() {
+		return
+	}
 }
 
-class Workstation extends Infrastructure {
+module.exports = class Workstation extends Infrastructure {
 	constructor(level, cost, name, sprite) {
 		super(level, cost, name, sprite);
 	}
